@@ -3,6 +3,6 @@
     "fstart": 2000000000.0,
     "fstop": 10000000000.0,
     "numpoints": 1001,
-    "ifbw": 1000.0,
-    "source_power": -30.0
+    "ifbw": 100.0,
+    "source_power": 0.0
 }
