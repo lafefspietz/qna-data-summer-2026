@@ -6,6 +6,8 @@ from urllib.request import urlopen
 
 WARM_SWITCHES_1_IP_ADDRESS = '169.254.10.10'
 WARM_SWITCHES_2_IP_ADDRESS = '169.254.12.12'
+PROGRAMMABLE_ATTENUATOR_IP_ADDRESS = '169.254.11.11'
+
 
 def send_url_command(ip_address, cmd_to_send):
     url = f"http://{ip_address}/:{cmd_to_send}"
@@ -101,12 +103,17 @@ def configure_warm_switches(json_response):
     )
 
 
+def set_programmable_attenuator(attenuation):
+    send_url_command(PROGRAMMABLE_ATTENUATOR_IP_ADDRESS,f"SETATT={attenuation}")
+
+
 async def receive_data(websocket):
     async for message in websocket:
         try:
             json_response = json.loads(message)
             print(f"\nReceived state payload from web panel: {json_response}")
             configure_warm_switches(json_response)
+            set_programmable_attenuator(abs(json_response['programmable_attenuator']))
         except Exception as e:
             print(f"Error parsing frontend JSON payload: {e}")
 

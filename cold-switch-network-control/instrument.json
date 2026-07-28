@@ -6,11 +6,11 @@
             {"key": "open", "text": "internal_open"},
             {"key": "load", "text": "internal_load"},
             {"key": "port1", "text": "port1_output"},
-            {"key": "port2", "text": "port2_jpa"},
-            {"key": "port3", "text": "port3_hot_wire"},
-            {"key": "port4", "text": "port4_sntj"},
-            {"key": "port5", "text": "port5_short"},
-            {"key": "port6", "text": "port6_load"}
+            {"key": "port2", "text": "port2_short"},
+            {"key": "port3", "text": "port3_jpa"},
+            {"key": "port4", "text": "port4_load"},
+            {"key": "port5", "text": "port5_hot_wire"},
+            {"key": "port6", "text": "port6_short"}
         ]
     },
     "cold_output_switch_2": {
@@ -20,11 +20,11 @@
             {"key": "open", "text": "internal_open"},
             {"key": "load", "text": "internal_load"},
             {"key": "port1", "text": "port1_output"},
-            {"key": "port2", "text": "port2_jpa"},
-            {"key": "port3", "text": "port3_hot_wire"},
-            {"key": "port4", "text": "port4_sntj"},
+            {"key": "port2", "text": "port2_short"},
+            {"key": "port3", "text": "port3_jpa"},
+            {"key": "port4", "text": "port4_load"},
             {"key": "port5", "text": "port5_short"},
-            {"key": "port6", "text": "port6_load"}
+            {"key": "port6", "text": "port6_short"}
         ]
     },
     "cold_thru_switch_pair": {

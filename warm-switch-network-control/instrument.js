@@ -57,7 +57,7 @@ function loadMenus() {
     document.querySelector('select[name="jpa_pump_select"]').value = instrument.jpa_pump_select.state;
 
 
-  document.querySelector('input[name="programmable_attenuator"]').value = -Math.abs(instrument.programmable_attenuator.value);
+  document.querySelector('input[name="programmable_attenuator"]').value = Math.abs(instrument.programmable_attenuator.value);
 
   warm_switch_states.measurement_select = instrument.measurement_select.state;
   warm_switch_states.s_parameter_select = instrument.s_parameter_select.state;
