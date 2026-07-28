@@ -1,0 +1,40 @@
+{
+    "s_parameter_select": {
+        "state": "s11",
+        "options": [
+            {"key": "s11", "text": "s11"},
+            {"key": "s21", "text": "s21"},
+            {"key": "s12", "text": "s12"},
+            {"key": "s22", "text": "s22"},
+            {"key": "s23", "text": "s23"},
+            {"key": "s13", "text": "s13"},
+            {"key": "s14", "text": "s14"},
+            {"key": "s24", "text": "s24"}
+        ]
+    },
+    "measurement_select": {
+        "state": "vna",
+        "options": [
+            {"key": "vna", "text": "vna"},
+            {"key": "spectrum_analyzer_fridge", "text": "spectrum_analyzer_fridge"},
+            {"key": "spectrum_analyzer_diode", "text": "spectrum_analyzer_diode"}
+        ]
+    },
+    "twpa_pump_select": {
+        "state": "twpa_pump_1",
+        "options": [
+            {"key": "twpa_pump_1", "text": "twpa_pump_1"},
+            {"key": "twpa_pump_2", "text": "twpa_pump_2"}
+        ]
+    },
+    "jpa_pump_select": {
+        "state": "jpa_pump_1",
+        "options": [
+            {"key": "jpa_pump_1", "text": "jpa_pump_1"},
+            {"key": "jpa_pump_2", "text": "jpa_pump_2"}
+        ]
+    },
+    "programmable_attenuator": {
+        "value": 40
+    }
+}
