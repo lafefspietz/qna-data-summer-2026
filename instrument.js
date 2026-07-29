@@ -1,12 +1,14 @@
-const debug_mode = false;
-let socket = null;
+debug_mode = false;
 
 if (!debug_mode) {
   socket = new WebSocket('ws://localhost:8080');
 }
 
-let instrument = {};
-let warm_switch_states = {};
+instrument = {};
+cold_switch_states = {};
+warm_switch_states = {};
+
+virtual_instrument_payload = {};
 
 function sendData(instrumentData) {
   if (!debug_mode && socket) {
@@ -23,8 +25,33 @@ fetch('load-file.php?filename=instrument.json')
     loadMenus();
   });
 
-function loadMenus() {
-  instrument.measurement_select.options.forEach(item => {
+
+function loadMenus(){
+  instrument.cold_output_switch_1.options.forEach(item => {
+    let option = document.createElement("option");
+    option.value = item.key;
+    option.text = item.text;
+    document.querySelector('select[name="cold_output_switch_1"]').appendChild(option);
+  });
+  document.querySelector('select[name="cold_output_switch_1"]').value = instrument.cold_output_switch_1.state;
+
+  instrument.cold_output_switch_2.options.forEach(item => {
+    let option = document.createElement("option");
+    option.value = item.key;
+    option.text = item.text;
+    document.querySelector('select[name="cold_output_switch_2"]').appendChild(option);
+  });
+  document.querySelector('select[name="cold_output_switch_2"]').value = instrument.cold_output_switch_2.state;
+
+  instrument.cold_thru_switch_pair.options.forEach(item => {
+    let option = document.createElement("option");
+    option.value = item.key;
+    option.text = item.text;
+    document.querySelector('select[name="cold_thru_switch_pair"]').appendChild(option);
+  });
+  document.querySelector('select[name="cold_thru_switch_pair"]').value = instrument.cold_thru_switch_pair.state;
+
+instrument.measurement_select.options.forEach(item => {
     let option = document.createElement("option");
     option.value = item.key;
     option.text = item.text;
@@ -63,23 +90,34 @@ function loadMenus() {
   warm_switch_states.s_parameter_select = instrument.s_parameter_select.state;
   warm_switch_states.twpa_pump_select = instrument.twpa_pump_select.state;
   warm_switch_states.jpa_pump_select = instrument.jpa_pump_select.state;
-  warm_switch_states.programmable_attenuator = Number(document.querySelector('input[name="programmable_attenuator"]').value);
+  warm_switch_states.programmable_attenuator = Number(document.querySelector('input[name="programmable_attenuator"]').value);  
   
+  cold_switch_states.cold_output_switch_1 = instrument.cold_output_switch_1.state
+  cold_switch_states.cold_output_switch_2 = instrument.cold_output_switch_2.state
+  cold_switch_states.cold_thru_switch_pair = instrument.cold_thru_switch_pair.state
   
   
   
 }
 
-document.querySelector('fieldset').addEventListener('change', (event) => {
+document.body.addEventListener('change', (event) => {
   let name = event.target.name;
   let value = event.target.value;
-
-  if (name === "programmable_attenuator") {
-    warm_switch_states[name] = Number(value);
+  
+  if (name.startsWith('cold_')) {
+    cold_switch_states[name] = value;
   } else {
-    warm_switch_states[name] = value;
+    if (name === "programmable_attenuator") {
+      warm_switch_states[name] = Number(value);
+    } else {
+      warm_switch_states[name] = value;
+    }
   }
+  
+  virtual_instrument_payload.warm_switch_states = warm_switch_states;
+  virtual_instrument_payload.cold_switch_states = cold_switch_states;
     
-  console.log(JSON.stringify(warm_switch_states));  
-  sendData(warm_switch_states);
+  console.log(JSON.stringify(virtual_instrument_payload));  
+
+  sendData(virtual_instrument_payload);
 });

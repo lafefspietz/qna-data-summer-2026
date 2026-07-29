@@ -1,0 +1,82 @@
+{
+    "cold_output_switch_1": {
+        "state": "open",
+        "options": [
+            {"key": "short", "text": "internal_short"},
+            {"key": "open", "text": "internal_open"},
+            {"key": "load", "text": "internal_load"},
+            {"key": "port1", "text": "port1_output"},
+            {"key": "port2", "text": "port2_short"},
+            {"key": "port3", "text": "port3_jpa"},
+            {"key": "port4", "text": "port4_load"},
+            {"key": "port5", "text": "port5_hot_wire"},
+            {"key": "port6", "text": "port6_short"}
+        ]
+    },
+    "cold_output_switch_2": {
+        "state": "open",
+        "options": [
+            {"key": "short", "text": "internal_short"},
+            {"key": "open", "text": "internal_open"},
+            {"key": "load", "text": "internal_load"},
+            {"key": "port1", "text": "port1_output"},
+            {"key": "port2", "text": "port2_short"},
+            {"key": "port3", "text": "port3_jpa"},
+            {"key": "port4", "text": "port4_load"},
+            {"key": "port5", "text": "port5_short"},
+            {"key": "port6", "text": "port6_short"}
+        ]
+    },
+    "cold_thru_switch_pair": {
+        "state": "open",
+        "options": [
+            {"key": "short", "text": "internal_short"},
+            {"key": "open", "text": "internal_open"},
+            {"key": "load", "text": "internal_load"},
+            {"key": "port1", "text": "port1_thru"},
+            {"key": "port2", "text": "port2_reflect"},
+            {"key": "port3", "text": "port3_line"},
+            {"key": "port4", "text": "port4_qubit"},
+            {"key": "port5", "text": "port5_twpa"},
+            {"key": "port6", "text": "port6_coupler"}
+        ]
+    },   
+    "s_parameter_select": {
+        "state": "s11",
+        "options": [
+            {"key": "s11", "text": "s11"},
+            {"key": "s21", "text": "s21"},
+            {"key": "s12", "text": "s12"},
+            {"key": "s22", "text": "s22"},
+            {"key": "s23", "text": "s23"},
+            {"key": "s13", "text": "s13"},
+            {"key": "s14", "text": "s14"},
+            {"key": "s24", "text": "s24"}
+        ]
+    },
+    "measurement_select": {
+        "state": "vna",
+        "options": [
+            {"key": "vna", "text": "vna"},
+            {"key": "spectrum_analyzer_fridge", "text": "spectrum_analyzer_fridge"},
+            {"key": "spectrum_analyzer_diode", "text": "spectrum_analyzer_diode"}
+        ]
+    },
+    "twpa_pump_select": {
+        "state": "twpa_pump_1",
+        "options": [
+            {"key": "twpa_pump_1", "text": "twpa_pump_1"},
+            {"key": "twpa_pump_2", "text": "twpa_pump_2"}
+        ]
+    },
+    "jpa_pump_select": {
+        "state": "jpa_pump_1",
+        "options": [
+            {"key": "jpa_pump_1", "text": "jpa_pump_1"},
+            {"key": "jpa_pump_2", "text": "jpa_pump_2"}
+        ]
+    },
+    "programmable_attenuator": {
+        "value": 0
+    }
+}

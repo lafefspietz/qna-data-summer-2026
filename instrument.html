@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <META NAME="robots" CONTENT="noindex,nofollow"><!--block google-->
+  <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/9wAA7usAAFVRAAC7uwAA//cAAPrfAAD63wAA+t8AAPjfAAD7jwAA+98AAPvfAAD71wAA++8AAP//AAD//wAA" rel="icon" type="image/x-icon">
+  <title>Cold Switch Network Control</title>    
+  <link rel="stylesheet" href="instrument.css">
+  <script src="instrument.js" defer></script>
+</head>
+<body>
+    <fieldset>
+      <legend>Cold Switch Network</legend>
+      <label>
+        <span>Cold Output Switch 1:</span>
+        <select name="cold_output_switch_1"></select>
+      </label>
+      <label>
+        <span>Cold Thru Switch Pair:</span>
+        <select name="cold_thru_switch_pair"></select>
+      </label>
+      
+      <label>
+        <span>Cold Output Switch 2:</span>
+        <select name="cold_output_switch_2"></select>
+      </label>
+    </fieldset>
+    
+    <fieldset>
+      <legend>Warm Switch Network</legend>
+
+      <label>
+        <span>Measurement Select:</span>
+        <select name="measurement_select"></select>
+      </label>
+      
+      <label>
+        <span>S Parameter Select:</span>
+        <select name="s_parameter_select"></select>
+      </label>
+
+      <label>
+        <span>TWPA Pump Select:</span>
+        <select name="twpa_pump_select"></select>
+      </label>
+      
+      <label>
+        <span>JPA Pump Select:</span>
+        <select name="jpa_pump_select"></select>
+      </label>
+      
+      <label>
+        <span>Programmable Attenuator:</span>
+        <div class="input-container">
+          <input type="number" name="programmable_attenuator" max="63" min="0" step="1">
+          <span class="unit">dB</span>
+        </div>
+      </label>
+     
+    </fieldset>
+</body>
+</html>
