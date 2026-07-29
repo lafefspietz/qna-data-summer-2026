@@ -1,4 +1,4 @@
-debug_mode = true;
+debug_mode = false;
 
 if (!debug_mode) {
   socket = new WebSocket('ws://localhost:8080');
