@@ -1,4 +1,13 @@
-{
+{   
+    "analyzer": {
+        "vna_source_power": -30,
+        "vna_if_bandwidth": 10000,
+        "sa_resolution_bandwidth": 1000000,
+        "sa_video_bandwidth": 10000,
+        "start_frequency": 4000000000,
+        "stop_frequency": 8000000000,
+        "number_of_points": 1001
+  },
     "cold_output_switch_1": {
         "state": "open",
         "options": [

@@ -1,14 +1,113 @@
-fieldset {
-  display: inline-block;
+body {
+  margin: 0;
+  padding: 0;
   font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+.layout-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.left-panel {
+  width: 50%;
+  padding: 16px;
+  border-right: 2px solid #ccc;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.right-panel {
+  width: 50%;
+  padding: 16px;
+  background-color: #f9f9f9;
+  overflow-y: auto;
+}
+
+fieldset {
+  display: block;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid #ccc;
+}
+
+.left-panel > fieldset {
+  max-width: 540px;
+}
+
+.switches-row {
+  display: flex;
+  gap: 16px;
+  max-width: 566px; 
+}
+
+.switches-row fieldset {
+  flex: 1;
 }
 
 label {
-  display: block;
-  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 8px;
+  font-size: 14px;
 }
 
 select {
-  display: block;
-  width: auto;
+  width: 110px;
+  padding: 2px;
+}
+
+.input-container {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #767676;
+  background: #fff;
+  padding: 2px 6px;
+  width: 110px;
+}
+
+.input-container input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 2px 0;
+  font-family: inherit;
+}
+
+.unit {
+  color: #767676;
+  font-size: 12px;
+  margin-left: 2px;
+}
+
+.inline-fields {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  gap: 4px;
+}
+
+.inline-fields label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 0;
+  white-space: nowrap; 
+}
+
+.inline-fields .input-container {
+  width: 55px;
+}
+
+input[name="number_of_points"] {
+  border: 1px solid #767676;
+  padding: 3px 6px;
+  width: 40px;
 }

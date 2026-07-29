@@ -1,4 +1,4 @@
-debug_mode = false;
+debug_mode = true;
 
 if (!debug_mode) {
   socket = new WebSocket('ws://localhost:8080');
@@ -7,6 +7,7 @@ if (!debug_mode) {
 instrument = {};
 cold_switch_states = {};
 warm_switch_states = {};
+analyzer_states = {};
 
 virtual_instrument_payload = {};
 
@@ -86,18 +87,31 @@ instrument.measurement_select.options.forEach(item => {
 
   document.querySelector('input[name="programmable_attenuator"]').value = Math.abs(instrument.programmable_attenuator.value);
 
+  document.querySelector('input[name="vna_source_power"]').value = instrument.analyzer.vna_source_power;
+  document.querySelector('input[name="vna_if_bandwidth"]').value = instrument.analyzer.vna_if_bandwidth;
+  document.querySelector('input[name="sa_resolution_bandwidth"]').value = instrument.analyzer.sa_resolution_bandwidth / 1e6;
+  document.querySelector('input[name="sa_video_bandwidth"]').value = instrument.analyzer.sa_video_bandwidth / 1e3;
+  document.querySelector('input[name="start_frequency"]').value = instrument.analyzer.start_frequency / 1e9;
+  document.querySelector('input[name="stop_frequency"]').value = instrument.analyzer.stop_frequency / 1e9;
+  document.querySelector('input[name="number_of_points"]').value = instrument.analyzer.number_of_points;
+
   warm_switch_states.measurement_select = instrument.measurement_select.state;
   warm_switch_states.s_parameter_select = instrument.s_parameter_select.state;
   warm_switch_states.twpa_pump_select = instrument.twpa_pump_select.state;
   warm_switch_states.jpa_pump_select = instrument.jpa_pump_select.state;
   warm_switch_states.programmable_attenuator = Number(document.querySelector('input[name="programmable_attenuator"]').value);  
   
-  cold_switch_states.cold_output_switch_1 = instrument.cold_output_switch_1.state
-  cold_switch_states.cold_output_switch_2 = instrument.cold_output_switch_2.state
-  cold_switch_states.cold_thru_switch_pair = instrument.cold_thru_switch_pair.state
+  cold_switch_states.cold_output_switch_1 = instrument.cold_output_switch_1.state;
+  cold_switch_states.cold_output_switch_2 = instrument.cold_output_switch_2.state;
+  cold_switch_states.cold_thru_switch_pair = instrument.cold_thru_switch_pair.state;
   
-  
-  
+  analyzer_states.vna_source_power = instrument.analyzer.vna_source_power;
+  analyzer_states.vna_if_bandwidth = instrument.analyzer.vna_if_bandwidth;
+  analyzer_states.sa_resolution_bandwidth = instrument.analyzer.sa_resolution_bandwidth;
+  analyzer_states.sa_video_bandwidth = instrument.analyzer.sa_video_bandwidth;
+  analyzer_states.start_frequency = instrument.analyzer.start_frequency;
+  analyzer_states.stop_frequency = instrument.analyzer.stop_frequency;
+  analyzer_states.number_of_points = instrument.analyzer.number_of_points;
 }
 
 document.body.addEventListener('change', (event) => {
@@ -106,6 +120,18 @@ document.body.addEventListener('change', (event) => {
   
   if (name.startsWith('cold_')) {
     cold_switch_states[name] = value;
+  } else if (
+    name === "vna_source_power" || 
+    name === "vna_if_bandwidth" || 
+    name === "number_of_points"
+  ) {
+    analyzer_states[name] = Number(value);
+  } else if (name === "sa_video_bandwidth") {
+    analyzer_states[name] = Math.round(Number(value) * 1e3);
+  } else if (name === "sa_resolution_bandwidth") {
+    analyzer_states[name] = Math.round(Number(value) * 1e6);
+  } else if (name === "start_frequency" || name === "stop_frequency") {
+    analyzer_states[name] = Math.round(Number(value) * 1e9);
   } else {
     if (name === "programmable_attenuator") {
       warm_switch_states[name] = Number(value);
@@ -116,6 +142,7 @@ document.body.addEventListener('change', (event) => {
   
   virtual_instrument_payload.warm_switch_states = warm_switch_states;
   virtual_instrument_payload.cold_switch_states = cold_switch_states;
+  virtual_instrument_payload.analyzer_states = analyzer_states;
     
   console.log(JSON.stringify(virtual_instrument_payload));  
 

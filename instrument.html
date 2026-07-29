@@ -2,61 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <META NAME="robots" CONTENT="noindex,nofollow"><!--block google-->
+  <META NAME="robots" CONTENT="noindex,nofollow">
   <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/9wAA7usAAFVRAAC7uwAA//cAAPrfAAD63wAA+t8AAPjfAAD7jwAA+98AAPvfAAD71wAA++8AAP//AAD//wAA" rel="icon" type="image/x-icon">
-  <title>Cold Switch Network Control</title>    
+  <title>Quantum Network Analzyer</title>    
   <link rel="stylesheet" href="instrument.css">
   <script src="instrument.js" defer></script>
 </head>
 <body>
-    <fieldset>
-      <legend>Cold Switch Network</legend>
-      <label>
-        <span>Cold Output Switch 1:</span>
-        <select name="cold_output_switch_1"></select>
-      </label>
-      <label>
-        <span>Cold Thru Switch Pair:</span>
-        <select name="cold_thru_switch_pair"></select>
-      </label>
+  <div class="layout-container">
+    <div class="left-panel">
+      <fieldset>
+      <legend>Analyzers</legend>
+          <label>
+              <span>Vector Network Analyzer Source Power:</span>
+              <div class="input-container">
+                  <input type="number" name="vna_source_power" value="-30" step="any">
+                  <span class="unit">dBm</span>
+              </div>
+          </label>
       
-      <label>
-        <span>Cold Output Switch 2:</span>
-        <select name="cold_output_switch_2"></select>
-      </label>
-    </fieldset>
-    
-    <fieldset>
-      <legend>Warm Switch Network</legend>
+          <label>
+              <span>Vector Network Analyzer IF Bandwidth:</span>
+              <div class="input-container">
+                  <input type="text" inputmode="numeric" name="vna_if_bandwidth" value="10000">
+                  <span class="unit">Hz</span>
+              </div>
+          </label>
+      
+          <label>
+              <span>Spectrum Analyzer Resolution Bandwidth:</span>
+              <div class="input-container">
+                  <input type="text" inputmode="decimal" name="sa_resolution_bandwidth" value="1">
+                  <span class="unit">MHz</span>
+              </div>
+          </label>
+      
+          <label>
+              <span>Spectrum Analyzer Video Bandwidth:</span>
+              <div class="input-container">
+                  <input type="text" inputmode="decimal" name="sa_video_bandwidth" value="10">
+                  <span class="unit">kHz</span>
+              </div>
+          </label>
+      
+          <div class="inline-fields">
+              <label>
+                  <span>Start Freq:</span>
+                  <div class="input-container">
+                      <input type="text" inputmode="decimal" name="start_frequency" value="4">
+                      <span class="unit">GHz</span>
+                  </div>
+              </label>
+      
+              <label>
+                  <span>Stop Freq:</span>
+                  <div class="input-container">
+                      <input type="text" inputmode="decimal" name="stop_frequency" value="8">
+                      <span class="unit">GHz</span>
+                  </div>
+              </label>
+      
+              <label>
+                  <span>Points:</span>
+                  <input type="text" inputmode="numeric" name="number_of_points" value="1001">
+              </label>
+          </div>
+      </fieldset>
 
-      <label>
-        <span>Measurement Select:</span>
-        <select name="measurement_select"></select>
-      </label>
-      
-      <label>
-        <span>S Parameter Select:</span>
-        <select name="s_parameter_select"></select>
-      </label>
+      <div class="switches-row">
+        <fieldset>
+          <legend>Cold Switch Network</legend>
+          <label>
+            <span>Cold Output Switch 1:</span>
+            <select name="cold_output_switch_1"></select>
+          </label>
+          <label>
+            <span>Cold Thru Switch Pair:</span>
+            <select name="cold_thru_switch_pair"></select>
+          </label>
+          <label>
+            <span>Cold Output Switch 2:</span>
+            <select name="cold_output_switch_2"></select>
+          </label>
+        </fieldset>
+        
+        <fieldset>
+          <legend>Warm Switch Network</legend>
+          <label>
+            <span>Measurement Select:</span>
+            <select name="measurement_select"></select>
+          </label>
+          <label>
+            <span>S Parameter Select:</span>
+            <select name="s_parameter_select"></select>
+          </label>
+          <label>
+            <span>TWPA Pump Select:</span>
+            <select name="twpa_pump_select"></select>
+          </label>
+          <label>
+            <span>JPA Pump Select:</span>
+            <select name="jpa_pump_select"></select>
+          </label>
+          <label>
+            <span>Programmable Attenuator:</span>
+            <div class="input-container">
+              <input type="number" name="programmable_attenuator" max="63" min="0" step="1">
+              <span class="unit">dB</span>
+            </div>
+          </label>
+        </fieldset>
+      </div>
 
-      <label>
-        <span>TWPA Pump Select:</span>
-        <select name="twpa_pump_select"></select>
-      </label>
-      
-      <label>
-        <span>JPA Pump Select:</span>
-        <select name="jpa_pump_select"></select>
-      </label>
-      
-      <label>
-        <span>Programmable Attenuator:</span>
-        <div class="input-container">
-          <input type="number" name="programmable_attenuator" max="63" min="0" step="1">
-          <span class="unit">dB</span>
-        </div>
-      </label>
-     
-    </fieldset>
+    </div>
+    <div class="right-panel">
+      <div id="response-output"></div>
+    </div>
+  </div>
 </body>
 </html>
