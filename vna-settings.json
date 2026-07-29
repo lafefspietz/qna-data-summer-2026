@@ -1,0 +1,8 @@
+{
+    "idn": "Rohde&Schwarz,ZVA24-2Port,1145111024100131,3.30",
+    "fstart": 4000000000.0,
+    "fstop": 8000000000.0,
+    "numpoints": 1001,
+    "ifbw": 10000.0,
+    "source_power": 0.0
+}
