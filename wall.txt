@@ -1,8 +1,0 @@
-plan for today:
- - get full control of all switches, warm and cold, united into a single menu✅
- - add control of vna and spectrum analyzer to instrument.* at top ✅
- - document every aspect of the system, validate choices of bias resistor warm for flux bias or add cold bias resistor
- - test all states and document
-tomorrow: 
- make sure grounding is ok and fix as needed
- cans on, pump down, start cooldown
