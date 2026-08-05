@@ -14,11 +14,11 @@ async def receive_data(websocket, state, previous_state):
                 old_value = old_snapshot.get(key)
                 if old_value != new_value:
                     print(f"Key '{key}' changed from {old_value} to {new_value}")
+                    # WHERE ALL THE INSTRUMENTS WILL BE SET ON NETWORK CHANGE
 
             state.clear()
             state.update(incoming_json)
             if state != previous_state:
-                # WHERE ALL THE INSTRUMENTS WILL BE SET ON NETWORK CHANGE
                 previous_state.clear()
                 previous_state.update(copy.deepcopy(state))
         except Exception as e:
