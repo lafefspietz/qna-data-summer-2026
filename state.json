@@ -1,6 +1,6 @@
 {
     "vna_idn": "Rohde&Schwarz,ZVA24-2Port,1145111024100131,3.30",
-    "vna_source_power": 1,
+    "vna_source_power": 0,
     "vna_if_bandwidth": 10000,
     "vna_start_frequency": 4000000000,
     "vna_stop_frequency": 8000000000,
@@ -15,7 +15,7 @@
     "cold_output_switch_1": "port3",
     "cold_output_switch_2": "port1",
     "cold_thru_switch_pair": "port1",
-    "s_parameter_select": "s21",
+    "s_parameter_select": "s11",
     "measurement_select": "spectrum_analyzer_fridge",
     "twpa_pump_select": "twpa_pump_1",
     "jpa_pump_select": "jpa_pump_1",
