@@ -35,7 +35,8 @@ if __name__ == "__main__":
     with open("state.json", "r") as f:
         state = json.load(f)
     previous_state = copy.deepcopy(state)
-    time.sleep(1) # WHERE ALL THE INSTRUMENTS WILL BE SET ON BOOT (RUN ONCE)
+    time.sleep(1) 
+    # WHERE ALL THE INSTRUMENTS WILL BE SET ON BOOT (RUN ONCE)
     try:
         asyncio.run(main_loop(state, previous_state))
     except (KeyboardInterrupt, asyncio.CancelledError):
