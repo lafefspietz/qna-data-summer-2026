@@ -32,7 +32,7 @@
           <label>
               <span>Spectrum Analyzer Resolution Bandwidth:</span>
               <div class="input-container">
-                  <input type="text" inputmode="decimal" name="sa_resolution_bandwidth" value="1">
+                  <input type="text" inputmode="decimal" name="spa_resolution_bandwidth" value="1">
                   <span class="unit">MHz</span>
               </div>
           </label>
@@ -40,33 +40,56 @@
           <label>
               <span>Spectrum Analyzer Video Bandwidth:</span>
               <div class="input-container">
-                  <input type="text" inputmode="decimal" name="sa_video_bandwidth" value="10">
+                  <input type="text" inputmode="decimal" name="spa_video_bandwidth" value="10">
                   <span class="unit">kHz</span>
               </div>
           </label>
       
           <div class="inline-fields">
               <label>
-                  <span>Start Freq:</span>
+                  <span>VNA Start Freq:</span>
                   <div class="input-container">
-                      <input type="text" inputmode="decimal" name="start_frequency" value="4">
+                      <input type="text" inputmode="decimal" name="vna_start_frequency" value="4">
                       <span class="unit">GHz</span>
                   </div>
               </label>
       
               <label>
-                  <span>Stop Freq:</span>
+                  <span>VNA Stop Freq:</span>
                   <div class="input-container">
-                      <input type="text" inputmode="decimal" name="stop_frequency" value="8">
+                      <input type="text" inputmode="decimal" name="vna_stop_frequency" value="8">
                       <span class="unit">GHz</span>
                   </div>
               </label>
       
               <label>
-                  <span>Points:</span>
-                  <input type="text" inputmode="numeric" name="number_of_points" value="1001">
+                  <span>VNA Points:</span>
+                  <input type="text" inputmode="numeric" name="vna_number_of_points" value="1001">
               </label>
           </div>
+          <div class="inline-fields">
+              <label>
+                  <span>SPA Start Freq:</span>
+                  <div class="input-container">
+                      <input type="text" inputmode="decimal" name="spa_start_frequency" value="4">
+                      <span class="unit">GHz</span>
+                  </div>
+              </label>
+      
+              <label>
+                  <span>SPA Stop Freq:</span>
+                  <div class="input-container">
+                      <input type="text" inputmode="decimal" name="spa_stop_frequency" value="8">
+                      <span class="unit">GHz</span>
+                  </div>
+              </label>
+      
+              <label>
+                  <span>SPA Points:</span>
+                  <input type="text" inputmode="numeric" name="spa_number_of_points" value="1001">
+              </label>
+          </div>
+
       </fieldset>
 
       <div class="switches-row">

@@ -1,41 +1,47 @@
-{   
-    "vna_source_power": -30,
+{
+    "vna_idn": "Rohde&Schwarz,ZVA24-2Port,1145111024100131,3.30",
+    "vna_source_power": 1,
     "vna_if_bandwidth": 10000,
-    "sa_resolution_bandwidth": 1000000,
-    "sa_video_bandwidth": 10000,
-    "start_frequency": 4000000000,
-    "stop_frequency": 8000000000,
-    "number_of_points": 1001,
-    "cold_output_switch_1":"open",
-    "cold_output_switch_2":"open",
-    "cold_thru_switch_pair":"open",
-    "s_parameter_select":"s11",
-    "measurement_select":"vna",
-    "twpa_pump_select":"twpa_pump_1",
-    "jpa_pump_select":"jpa_pump_1",
-    "jpa1":{
-        "pump_power":-30,
-        "pump_frequency":13.000e9,
-        "flux_bias":0.75,
-        "volts_per_phi0":1.0
+    "vna_start_frequency": 4000000000,
+    "vna_stop_frequency": 8000000000,
+    "vna_number_of_points": 1001,
+    "spa_resolution_bandwidth": 1000000,
+    "spa_video_bandwidth": 10000,
+    "spa_units": "W",
+    "spa_idn": "Hewlett-Packard, E7405A, SG45102671, A.14.04",
+    "spa_start_frequency": 4000000000,
+    "spa_stop_frequency": 8000000000,
+    "spa_number_of_points": 1001,
+    "cold_output_switch_1": "port3",
+    "cold_output_switch_2": "port1",
+    "cold_thru_switch_pair": "port1",
+    "s_parameter_select": "s21",
+    "measurement_select": "spectrum_analyzer_fridge",
+    "twpa_pump_select": "twpa_pump_1",
+    "jpa_pump_select": "jpa_pump_1",
+    "programmable_attenuator": 0,
+    "temperature": 0.02,
+    "date": "04-08-26",
+    "time": "00:06:49",
+    "timestamp": 1785860990,
+    "data_repository": "https://github.com/lafefspietz/qna-data-summer-2026/",
+    "jpa1": {
+        "pump_power": -30,
+        "pump_frequency": 13000000000,
+        "flux_bias": 0.75,
+        "volts_per_phi0": 1
     },
-    "jpa2":{
-        "pump_power":-30,
-        "pump_frequency":13.000e9,
-        "flux_bias":0.75,
-        "volts_per_phi0":1.0
+    "jpa2": {
+        "pump_power": -30,
+        "pump_frequency": 13000000000,
+        "flux_bias": 0.75,
+        "volts_per_phi0": 1
     },
-    "twpa":{
-        "pump_power":-30,
-        "pump_frequency":8.75e9
+    "twpa": {
+        "pump_power": -30,
+        "pump_frequency": 8750000000
     },
-    "noise_source":{
-        "voltage":0.0
-    },
-    "programmable_attenuator":0,
-    "temperature":0.02,
-    "date":"04-08-26",
-    "time":"00:06:49",
-    "timestamp":1785860990,
-    "data_repository":"https://github.com/lafefspietz/qna-data-summer-2026/"
+    "noise_source": {
+        "voltage": 0
+    }
 }

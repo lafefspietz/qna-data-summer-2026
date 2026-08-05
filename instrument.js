@@ -5,9 +5,8 @@ if (!debug_mode) {
 }
 
 instrument = {};
-cold_switch_states = {};
-warm_switch_states = {};
-analyzer_states = {};
+state = {};
+
 
 virtual_instrument_payload = {};
 
@@ -23,18 +22,25 @@ fetch('load-file.php?filename=instrument.json')
   .then(response => response.text())
   .then(data => {
     instrument = JSON.parse(data.trim());
-    loadMenus();
+    fetch('load-file.php?filename=state.json')
+      .then(response => response.text())
+      .then(data => {
+        state = JSON.parse(data.trim());
+        loadMenus();
+      });
+    
   });
 
 
 function loadMenus(){
+
   instrument.cold_output_switch_1.options.forEach(item => {
     let option = document.createElement("option");
     option.value = item.key;
     option.text = item.text;
     document.querySelector('select[name="cold_output_switch_1"]').appendChild(option);
   });
-  document.querySelector('select[name="cold_output_switch_1"]').value = instrument.cold_output_switch_1.state;
+  document.querySelector('select[name="cold_output_switch_1"]').value = state.cold_output_switch_1;
 
   instrument.cold_output_switch_2.options.forEach(item => {
     let option = document.createElement("option");
@@ -42,7 +48,7 @@ function loadMenus(){
     option.text = item.text;
     document.querySelector('select[name="cold_output_switch_2"]').appendChild(option);
   });
-  document.querySelector('select[name="cold_output_switch_2"]').value = instrument.cold_output_switch_2.state;
+  document.querySelector('select[name="cold_output_switch_2"]').value = state.cold_output_switch_2;
 
   instrument.cold_thru_switch_pair.options.forEach(item => {
     let option = document.createElement("option");
@@ -50,7 +56,7 @@ function loadMenus(){
     option.text = item.text;
     document.querySelector('select[name="cold_thru_switch_pair"]').appendChild(option);
   });
-  document.querySelector('select[name="cold_thru_switch_pair"]').value = instrument.cold_thru_switch_pair.state;
+  document.querySelector('select[name="cold_thru_switch_pair"]').value = state.cold_thru_switch_pair;
 
 instrument.measurement_select.options.forEach(item => {
     let option = document.createElement("option");
@@ -58,7 +64,7 @@ instrument.measurement_select.options.forEach(item => {
     option.text = item.text;
     document.querySelector('select[name="measurement_select"]').appendChild(option);
   });
-  document.querySelector('select[name="measurement_select"]').value = instrument.measurement_select.state;
+  document.querySelector('select[name="measurement_select"]').value = state.measurement_select;
 
   instrument.s_parameter_select.options.forEach(item => {
     let option = document.createElement("option");
@@ -66,7 +72,7 @@ instrument.measurement_select.options.forEach(item => {
     option.text = item.text;
     document.querySelector('select[name="s_parameter_select"]').appendChild(option);
   });
-  document.querySelector('select[name="s_parameter_select"]').value = instrument.s_parameter_select.state;
+  document.querySelector('select[name="s_parameter_select"]').value = state.s_parameter_select;
 
   instrument.twpa_pump_select.options.forEach(item => {
   let option = document.createElement("option");
@@ -74,7 +80,7 @@ instrument.measurement_select.options.forEach(item => {
   option.text = item.text;
   document.querySelector('select[name="twpa_pump_select"]').appendChild(option);
     });
-    document.querySelector('select[name="twpa_pump_select"]').value = instrument.twpa_pump_select.state;
+    document.querySelector('select[name="twpa_pump_select"]').value = state.twpa_pump_select;
 
   instrument.jpa_pump_select.options.forEach(item => {
   let option = document.createElement("option");
@@ -82,69 +88,61 @@ instrument.measurement_select.options.forEach(item => {
   option.text = item.text;
   document.querySelector('select[name="jpa_pump_select"]').appendChild(option);
     });
-    document.querySelector('select[name="jpa_pump_select"]').value = instrument.jpa_pump_select.state;
+    document.querySelector('select[name="jpa_pump_select"]').value = state.jpa_pump_select;
 
 
-  document.querySelector('input[name="programmable_attenuator"]').value = Math.abs(instrument.programmable_attenuator.value);
+  document.querySelector('input[name="programmable_attenuator"]').value = Math.abs(state.programmable_attenuator);
 
-  document.querySelector('input[name="vna_source_power"]').value = instrument.analyzer.vna_source_power;
-  document.querySelector('input[name="vna_if_bandwidth"]').value = instrument.analyzer.vna_if_bandwidth;
-  document.querySelector('input[name="sa_resolution_bandwidth"]').value = instrument.analyzer.sa_resolution_bandwidth / 1e6;
-  document.querySelector('input[name="sa_video_bandwidth"]').value = instrument.analyzer.sa_video_bandwidth / 1e3;
-  document.querySelector('input[name="start_frequency"]').value = instrument.analyzer.start_frequency / 1e9;
-  document.querySelector('input[name="stop_frequency"]').value = instrument.analyzer.stop_frequency / 1e9;
-  document.querySelector('input[name="number_of_points"]').value = instrument.analyzer.number_of_points;
-
-  warm_switch_states.measurement_select = instrument.measurement_select.state;
-  warm_switch_states.s_parameter_select = instrument.s_parameter_select.state;
-  warm_switch_states.twpa_pump_select = instrument.twpa_pump_select.state;
-  warm_switch_states.jpa_pump_select = instrument.jpa_pump_select.state;
-  warm_switch_states.programmable_attenuator = Number(document.querySelector('input[name="programmable_attenuator"]').value);  
+  document.querySelector('input[name="vna_source_power"]').value = state.vna_source_power;
+  document.querySelector('input[name="vna_if_bandwidth"]').value = state.vna_if_bandwidth;
+  document.querySelector('input[name="spa_resolution_bandwidth"]').value = state.spa_resolution_bandwidth / 1e6;
+  document.querySelector('input[name="spa_video_bandwidth"]').value = state.spa_video_bandwidth / 1e3;
   
-  cold_switch_states.cold_output_switch_1 = instrument.cold_output_switch_1.state;
-  cold_switch_states.cold_output_switch_2 = instrument.cold_output_switch_2.state;
-  cold_switch_states.cold_thru_switch_pair = instrument.cold_thru_switch_pair.state;
-  
-  analyzer_states.vna_source_power = instrument.analyzer.vna_source_power;
-  analyzer_states.vna_if_bandwidth = instrument.analyzer.vna_if_bandwidth;
-  analyzer_states.sa_resolution_bandwidth = instrument.analyzer.sa_resolution_bandwidth;
-  analyzer_states.sa_video_bandwidth = instrument.analyzer.sa_video_bandwidth;
-  analyzer_states.start_frequency = instrument.analyzer.start_frequency;
-  analyzer_states.stop_frequency = instrument.analyzer.stop_frequency;
-  analyzer_states.number_of_points = instrument.analyzer.number_of_points;
+  document.querySelector('input[name="vna_start_frequency"]').value = state.vna_start_frequency / 1e9;
+  document.querySelector('input[name="vna_stop_frequency"]').value = state.vna_stop_frequency / 1e9;
+  document.querySelector('input[name="vna_number_of_points"]').value = state.vna_number_of_points;
+
 }
 
 document.body.addEventListener('change', (event) => {
+    
   let name = event.target.name;
   let value = event.target.value;
+  console.log("name = " + name);
+  console.log("value = " + value);
   
   if (name.startsWith('cold_')) {
-    cold_switch_states[name] = value;
+    state[name] = value;
   } else if (
     name === "vna_source_power" || 
     name === "vna_if_bandwidth" || 
-    name === "number_of_points"
+    name === "vna_number_of_points" ||
+    name === "spa_number_of_points"
   ) {
-    analyzer_states[name] = Number(value);
-  } else if (name === "sa_video_bandwidth") {
-    analyzer_states[name] = Math.round(Number(value) * 1e3);
-  } else if (name === "sa_resolution_bandwidth") {
-    analyzer_states[name] = Math.round(Number(value) * 1e6);
-  } else if (name === "start_frequency" || name === "stop_frequency") {
-    analyzer_states[name] = Math.round(Number(value) * 1e9);
+    state[name] = Number(value);
+  } else if (name === "spa_video_bandwidth") {
+    state[name] = Math.round(Number(value) * 1e3);
+  } else if (name === "spa_resolution_bandwidth") {
+    state[name] = Math.round(Number(value) * 1e6);
+  } else if (name === "vna_start_frequency" || name === "vna_stop_frequency" || name === "spa_start_frequency" || name === "spa_stop_frequency") {
+    state[name] = Math.round(Number(value) * 1e9);
   } else {
     if (name === "programmable_attenuator") {
-      warm_switch_states[name] = Number(value);
+      state[name] = Number(value);
     } else {
-      warm_switch_states[name] = value;
+      state[name] = value;
     }
   }
   
-  virtual_instrument_payload.warm_switch_states = warm_switch_states;
-  virtual_instrument_payload.cold_switch_states = cold_switch_states;
-  virtual_instrument_payload.analyzer_states = analyzer_states;
-    
-  console.log(JSON.stringify(virtual_instrument_payload));  
+    fetch('save-file.php', { 
+        method: 'POST', 
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }, 
+        body: `data=${encodeURIComponent(JSON.stringify(state, null, 4))}&filename=${encodeURIComponent('state.json')}` 
+    });
 
-  sendData(virtual_instrument_payload);
+  console.log(JSON.stringify(state));  
+  sendData(state);
+ 
+ 
+  
 });
