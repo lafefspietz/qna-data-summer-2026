@@ -174,6 +174,16 @@ cold_thru_switch_pair = hid.device()
 cold_thru_switch_pair.open(VID, PID)
 
 
+rm = pyvisa.ResourceManager()
+instruments = rm.list_resources()
+
+vna = None
+for instrument in instruments:
+    if 'Rohde' in instrument:
+        # Initialize instrument
+        vna = RsInstrument(instrument, id_query=True, reset=False) 
+        break
+
 async def receive_data(websocket, state, previous_state):
     async for message in websocket:
         try:
@@ -195,7 +205,22 @@ async def receive_data(websocket, state, previous_state):
                          set_cold_output_switch(cold_output_switch_2,incoming_json["cold_output_switch_2"])
                     if key == 'cold_thru_switch_pair':
                         set_cold_thru_switch_pair(incoming_json['cold_thru_switch_pair'])
-
+                    if key == 'vna_start_frequency':
+                        vna.write(f":SENS1:FREQ:START {incoming_json['vna_start_frequency']}")
+                        vna.go_to_local()
+                    if key == 'vna_stop_frequency':
+                        vna.write(f":SENS1:FREQ:STOP {incoming_json['vna_stop_frequency']}")
+                        vna.go_to_local()
+                    if key == 'vna_number_of_points':
+                        vna.write(f":SENS1:SWEep:POINts {incoming_json['vna_number_of_points']}")
+                        vna.go_to_local()
+                    if key == 'vna_if_bandwidth':
+                        vna.write(f":SENS1:BANDwidth {incoming_json['vna_if_bandwidth']}")
+                        vna.go_to_local()
+                    if key == 'vna_source_power':
+                        vna.write(f":SOUR1:POW {incoming_json['vna_source_power']}")
+                        vna.go_to_local()
+    
 
             state.clear()
             state.update(incoming_json)
@@ -224,6 +249,12 @@ if __name__ == "__main__":
     set_cold_thru_switch_pair(state['cold_thru_switch_pair'])
     configure_warm_switches(state)
     set_programmable_attenuator(state['programmable_attenuator'])
+    vna.write(f":SENS1:FREQ:START {state['vna_start_frequency']}")
+    vna.write(f":SENS1:FREQ:STOP {state['vna_stop_frequency']}")
+    vna.write(f":SENS1:SWEep:POINts {state['vna_number_of_points']}")
+    vna.write(f":SENS1:BANDwidth {state['vna_if_bandwidth']}")
+    vna.write(f":SOUR1:POW {state['vna_source_power']}")
+    vna.go_to_local()
     try:
         asyncio.run(main_loop(state, previous_state))
     except (KeyboardInterrupt, asyncio.CancelledError):

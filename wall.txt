@@ -1,0 +1,6 @@
+plan: 
+  add control of vna and spectrum analyzer settings, get those working
+  add taking a trace from one or the other and saving it in a folder the correct way, with format in the readme
+  add JPA control panel and TWPA control panel as one integrated control
+  see if i can get the JPA to work in current broken state of switches
+  see if i can get the noise to work in current broken state of switches
