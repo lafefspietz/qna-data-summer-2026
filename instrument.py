@@ -184,6 +184,12 @@ for instrument in instruments:
         vna = RsInstrument(instrument, id_query=True, reset=False) 
         break
 
+spa = None
+for instrument in instruments:
+    if '7405' in instrument:
+        spa = rm.open_resource(instrument) 
+        break
+
 async def receive_data(websocket, state, previous_state):
     async for message in websocket:
         try:
@@ -220,7 +226,16 @@ async def receive_data(websocket, state, previous_state):
                     if key == 'vna_source_power':
                         vna.write(f":SOUR1:POW {incoming_json['vna_source_power']}")
                         vna.go_to_local()
-    
+                    if key == 'spa_start_frequency':    
+                        spa.write(f":SENS1:FREQ:START {incoming_json['spa_start_frequency']}")
+                    if key == 'spa_stop_frequency':
+                        spa.write(f":SENS1:FREQ:STOP {incoming_json['spa_stop_frequency']}")
+                    if key == 'spa_number_of_points':
+                        spa.write(f":SENS1:SWEep:POINts {incoming_json['spa_number_of_points']}")
+                    if key == 'spa_resolution_bandwidth':
+                        spa.write(f":SENS:BAND {incoming_json['spa_resolution_bandwidth']}")
+                    if key == 'spa_video_bandwidth':
+                        spa.write(f":SENS:BAND:VID {incoming_json['spa_video_bandwidth']}")
 
             state.clear()
             state.update(incoming_json)
@@ -249,12 +264,20 @@ if __name__ == "__main__":
     set_cold_thru_switch_pair(state['cold_thru_switch_pair'])
     configure_warm_switches(state)
     set_programmable_attenuator(state['programmable_attenuator'])
+
     vna.write(f":SENS1:FREQ:START {state['vna_start_frequency']}")
     vna.write(f":SENS1:FREQ:STOP {state['vna_stop_frequency']}")
     vna.write(f":SENS1:SWEep:POINts {state['vna_number_of_points']}")
     vna.write(f":SENS1:BANDwidth {state['vna_if_bandwidth']}")
     vna.write(f":SOUR1:POW {state['vna_source_power']}")
     vna.go_to_local()
+    
+    spa.write(f":SENS1:FREQ:START {state['spa_start_frequency']}")
+    spa.write(f":SENS1:FREQ:STOP {state['spa_stop_frequency']}")
+    spa.write(f":SENS1:SWEep:POINts {state['spa_number_of_points']}")
+    spa.write(f":SENS:BAND {state['spa_resolution_bandwidth']}")
+    spa.write(f":SENS:BAND:VID {state['spa_video_bandwidth']}")
+
     try:
         asyncio.run(main_loop(state, previous_state))
     except (KeyboardInterrupt, asyncio.CancelledError):
