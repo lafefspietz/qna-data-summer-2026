@@ -102,6 +102,7 @@ instrument.measurement_select.options.forEach(item => {
   document.querySelector('input[name="vna_stop_frequency"]').value = state.vna_stop_frequency / 1e9;
   document.querySelector('input[name="vna_number_of_points"]').value = state.vna_number_of_points;
 
+
 }
 
 document.body.addEventListener('change', (event) => {
