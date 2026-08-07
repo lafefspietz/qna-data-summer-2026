@@ -15,6 +15,10 @@
     "spa_start_frequency": 6000000000,
     "spa_stop_frequency": 6500000000,
     "spa_number_of_points": 1001,
+    "spa_plot_title": "Spectrum Analyzer Trace",
+    "spa_plot_minimum": 0,
+    "spa_plot_maximum": 1.5e-09,
+    "spa_ylabel": "Noise Power [pW]",
     "cold_output_switch_1": "port1",
     "cold_output_switch_2": "port1",
     "cold_thru_switch_pair": "port1",
@@ -25,8 +29,8 @@
     "programmable_attenuator": 0,
     "temperature": 0.02,
     "date": "07-08-2026",
-    "time": "13:41:28",
-    "timestamp": 1786131688,
+    "time": "14:25:27",
+    "timestamp": 1786134327,
     "data_repository": "https://github.com/lafefspietz/qna-data-summer-2026/",
     "data_url_base": "https://raw.githubusercontent.com/lafefspietz/qna-data-summer-2026/refs/heads/main/",
     "take_trace": true,
@@ -49,5 +53,7 @@
     "noise_source": {
         "voltage": 0
     },
-    "timezone": "Mountain Daylight Time"
+    "timezone": "Mountain Daylight Time",
+    "file_name": "1786134327-state.json",
+    "state_file_url": "https://raw.githubusercontent.com/lafefspietz/qna-data-summer-2026/refs/heads/main/07-08-2026/1786134327-state.json"
 }
