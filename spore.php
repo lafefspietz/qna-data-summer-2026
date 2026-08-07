@@ -1,5 +1,5 @@
 <?php
-$sporeUrl = "https://raw.githubusercontent.com/LafeLabs/spore/refs/heads/main/spore.json";
+$sporeUrl = "https://raw.githubusercontent.com/lafefspietz/qna-data-summer-2026/refs/heads/main/spore.json";
 
 $baseUrl = explode("spore.json",$sporeUrl)[0];
 
