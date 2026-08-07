@@ -18,7 +18,6 @@
 
 ## format for all data:
 
- - [web-instrument-name]/[4 digit year]-[2 digit month]-[2 digit day]/[unix time stamp in seconds]-vna-trace.json
  - [web-instrument-name]/[4 digit year]-[2 digit month]-[2 digit day]/[unix time stamp in seconds]-vna-trace.s1p
  - [web-instrument-name]/[4 digit year]-[2 digit month]-[2 digit day]/[unix time stamp in seconds]-spa-trace.json
  - [web-instrument-name]/[4 digit year]-[2 digit month]-[2 digit day]/[unix time stamp in seconds]-state.json
