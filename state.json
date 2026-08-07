@@ -29,8 +29,8 @@
     "programmable_attenuator": 0,
     "temperature": 0.02,
     "date": "07-08-2026",
-    "time": "15:11:43",
-    "timestamp": 1786137103,
+    "time": "15:19:41",
+    "timestamp": 1786137581,
     "data_repository": "https://github.com/lafefspietz/qna-data-summer-2026/",
     "data_url_base": "https://raw.githubusercontent.com/lafefspietz/qna-data-summer-2026/refs/heads/main/",
     "take_trace": true,
@@ -54,6 +54,6 @@
         "voltage": 0
     },
     "timezone": "Mountain Daylight Time",
-    "file_name": "1786137103-state.json",
-    "state_file_url": "https://raw.githubusercontent.com/lafefspietz/qna-data-summer-2026/refs/heads/main/07-08-2026/1786137103-state.json"
+    "file_name": "1786137581-state.json",
+    "state_file_url": "https://raw.githubusercontent.com/lafefspietz/qna-data-summer-2026/refs/heads/main/07-08-2026/1786137581-state.json"
 }
